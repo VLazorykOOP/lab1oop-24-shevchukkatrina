@@ -79,6 +79,39 @@ void task2() {
     }
 }
 
+//
+// Задача 3(дод)     макс знач серед мін парних , що скл з ел заданого масиву
+//
+void task3() {
+    int n;
+    cout << "Input size of array: ";
+    cin >> n;
+
+    vector<int> a(2 * n);
+
+    for (int i = 0; i < 2 * n; i++) {
+        cout << "Input " << i + 1 << "element of array: ";
+        cin >> a[i];
+    }
+
+    vector<int> min_even(n + 1, INT_MAX);
+
+    for (int i = 0; i < 2 * n; i++) {
+        if (a[i] % 2 == 0) {
+            min_even[i / 2] = min(min_even[i / 2], a[i]);
+        }
+    }
+
+    int max_value = INT_MIN;
+
+    for (int i = 0; i < n; i++) {
+        max_value = max(max_value, min_even[i]);
+    }
+
+    cout << "Max value from min even numbers: " << max_value << endl;
+    _getch();
+}
+
 int main()
 {
     int task;
@@ -90,6 +123,9 @@ int main()
         break;
     case 2:
         task2();
+        break;
+    case 3:
+        task3();
         break;
     default:
         cout << "Wrong task number." << endl;
