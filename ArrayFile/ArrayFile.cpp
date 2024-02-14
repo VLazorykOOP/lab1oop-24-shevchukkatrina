@@ -32,6 +32,53 @@ void task1() {
     }
     _getch();
 }
+
+//
+// Задача 2
+//
+void task2() {
+    int n;
+    cout << "Input size of array: ";
+    cin >> n;
+    vector<int> a(n);
+    // ввід
+    for (int i = 0; i < n; i++) {
+        cout << "Input " << i + 1 << " element of array: ";
+        cin >> a[i];
+    }
+    int min_idx = -1;
+    //  першого парного 
+    for (int i = 0; i < n; i++) {
+        if (a[i] % 2 == 0) {
+            min_idx = i;
+
+            break;
+
+        }
+    }
+    if (min_idx == -1) {
+        cout << "There are no even elements in the array." << endl;
+        _getch();
+        return;
+    }
+    int min_value = INT_MAX;
+    //  мін знач
+    for (int i = min_idx + 1; i < n; i++) {
+        if (a[i] > 0 && a[i] < min_value) {
+            min_value = a[i];
+        }
+    }
+    //вивед
+    if (min_value == INT_MAX) {
+        cout << "There are no positive numbers in the array to the right of the first even element." << endl;
+        _getch();
+    }
+    else {
+        cout << "Min value of the positive elements located to the right of the first even element: " << min_value << endl;
+        _getch();
+    }
+}
+
 int main()
 {
     int task;
@@ -40,6 +87,9 @@ int main()
     switch (task) {
     case 1:
         task1();
+        break;
+    case 2:
+        task2();
         break;
     default:
         cout << "Wrong task number." << endl;
